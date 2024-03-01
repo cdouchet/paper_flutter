@@ -16,15 +16,16 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Response<BuiltList<Book>>>(
-      future: booksApiClient.getBooksApi().getPromotedBooks(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          print(snapshot.error);
-          return Container();
-        }
-        print(snapshot.data);
-        return HomeHeaderBook(book: snapshot.data!.data!.first);
-      }
-    );
+        future: booksApiClient.getBooksApi().getPromotedBooks(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            print(snapshot.error);
+            return Container();
+          }
+          print(snapshot.data);
+          return HomeHeaderBook(
+            book: snapshot.data!.data!.first,
+          );
+        });
   }
 }

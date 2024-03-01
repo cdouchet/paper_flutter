@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 
 class LoginBackgroundTexts extends StatelessWidget {
   const LoginBackgroundTexts({super.key});
@@ -21,22 +24,17 @@ class LoginBackgroundTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          for (final textStyle in textsStyles())
-            if (textStyle != null)
-              Text("Creativity", style: textStyle)
-            else
-              const Text(
-                "",
-                style: TextStyle(fontSize: 70),
-              ),
-          const Spacer()
-        ],
+    return Marquee(
+      text: 'Creativity',
+      textScaleFactor: 1.8,
+      scrollAxis: Axis.vertical,
+      style: TextStyle(
+        fontSize: 70,
+        color: Colors.white.withOpacity(0.15),
+        fontWeight: FontWeight.normal,
       ),
+      blankSpace: 100,
+      velocity: 100,
     );
   }
 }

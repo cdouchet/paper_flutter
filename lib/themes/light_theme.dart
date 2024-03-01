@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 const defaultTextStyle = TextStyle(
   color: Colors.white,
-  fontWeight: FontWeight.bold,
+  // fontWeight: FontWeight.bold,
 );
 
 final _textTheme = const TextTheme(
@@ -19,11 +19,11 @@ final _textTheme = const TextTheme(
 ).apply();
 
 final lightTheme = ThemeData(
-  fontFamily: GoogleFonts.inter(fontWeight: FontWeight.bold).fontFamily,
+  fontFamily: GoogleFonts.inter().fontFamily,
   primaryColor: const Color.fromRGBO(0, 209, 199, 1),
   primaryTextTheme: _textTheme,
   textTheme: _textTheme,
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
-  splashFactory: NoSplash.splashFactory
+  splashFactory: NoSplash.splashFactory,
 );

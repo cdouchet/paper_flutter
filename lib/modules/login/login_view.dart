@@ -35,16 +35,14 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: SafeArea(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: const Stack(
-            children: [
-              LoginBackgroundTexts(),
-              LoginViewContent(),
-            ],
-          ),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: const Stack(
+          children: [
+            LoginBackgroundTexts(),
+            LoginViewContent(),
+          ],
         ),
       ),
     );

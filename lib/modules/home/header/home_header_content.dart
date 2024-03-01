@@ -30,7 +30,7 @@ class HomeHeaderContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               child: Image.network(
                 coverUrl,
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.cover,
                 height: MediaQuery.of(context).size.height * 0.3,
               ),
             ),
@@ -49,9 +49,61 @@ class HomeHeaderContent extends StatelessWidget {
                         fontSize: 36,
                         color: Colors.black,
                         fontFamily: GoogleFonts.spinnaker().fontFamily),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                   ),
-                  Text(description, style: defaultTextStyle.copyWith(color: Colors.black), textAlign: TextAlign.center, maxLines: 3, overflow: TextOverflow.ellipsis,)
+                  Text(
+                    description,
+                    style: defaultTextStyle.copyWith(color: Colors.black),
+                    textAlign: TextAlign.left,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(
+                    height: 14,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          side: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                            width: 1,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.play_arrow,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "Lire",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // const SizedBox(
+                      //   width: 16,
+                      // ),
+                      const Icon(
+                        Icons.more_vert_rounded,
+                        color: Colors.black,
+                      )
+                    ],
+                  )
                 ],
               ),
             ),

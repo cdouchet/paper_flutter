@@ -46,7 +46,7 @@ class HomeHeaderBook extends StatelessWidget {
                   ),
                 ),
                 const Expanded(
-                  flex: 4,
+                  flex: 5,
                   child: HomeHeaderContent(
                     coverUrl:
                         "https://dthezntil550i.cloudfront.net/2b/latest/2b2104211630543160006603598/1280_960/b0ccf363-0b33-40a3-8d0c-c065cddf1d32.png",
