@@ -9,9 +9,10 @@ All URIs are relative to *https://paper-back.doggo-saloon.net/books*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getBooks**](BooksApi.md#getbooks) | **GET** /books | Get Books
+[**getBooks**](BooksApi.md#getbooks) | **GET** /books | Get Books. Requires admin role
 [**getFullBook**](BooksApi.md#getfullbook) | **GET** /books/full/{book_id} | Get Full Book with chapters, pictures and reading count
 [**getMyBooks**](BooksApi.md#getmybooks) | **GET** /books/me | Get authenticated user&#39;s book
+[**getMyFullBooks**](BooksApi.md#getmyfullbooks) | **GET** /books/me/full | 
 [**getPromotedBooks**](BooksApi.md#getpromotedbooks) | **GET** /books/promoted | Get promoted books
 [**getRecommendedBooks**](BooksApi.md#getrecommendedbooks) | **GET** /books/recommended | Get recommended books
 [**getTrendingBooks**](BooksApi.md#gettrendingbooks) | **GET** /books/trending | Get trending books
@@ -23,9 +24,9 @@ Method | HTTP request | Description
 # **getBooks**
 > BuiltList<Book> getBooks()
 
-Get Books
+Get Books. Requires admin role
 
-Get Books
+Get Books. Requires admin role
 
 ### Example
 ```dart
@@ -141,8 +142,45 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getMyFullBooks**
+> BuiltList<FullBook> getMyFullBooks()
+
+
+
+### Example
+```dart
+import 'package:books_api_client/api.dart';
+
+final api = BooksApiClient().getBooksApi();
+
+try {
+    final response = api.getMyFullBooks();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling BooksApi->getMyFullBooks: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;FullBook&gt;**](FullBook.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getPromotedBooks**
-> BuiltList<Book> getPromotedBooks()
+> BuiltList<BookWithStats> getPromotedBooks()
 
 Get promoted books
 
@@ -167,7 +205,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;Book&gt;**](Book.md)
+[**BuiltList&lt;BookWithStats&gt;**](BookWithStats.md)
 
 ### Authorization
 
@@ -181,7 +219,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRecommendedBooks**
-> BuiltList<Book> getRecommendedBooks()
+> BuiltList<BookWithStats> getRecommendedBooks()
 
 Get recommended books
 
@@ -206,7 +244,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;Book&gt;**](Book.md)
+[**BuiltList&lt;BookWithStats&gt;**](BookWithStats.md)
 
 ### Authorization
 
@@ -220,7 +258,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTrendingBooks**
-> BuiltList<Book> getTrendingBooks()
+> BuiltList<BookWithStats> getTrendingBooks()
 
 Get trending books
 
@@ -245,7 +283,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;Book&gt;**](Book.md)
+[**BuiltList&lt;BookWithStats&gt;**](BookWithStats.md)
 
 ### Authorization
 

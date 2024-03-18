@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:storage_api_client/src/api_util.dart';
-import 'package:storage_api_client/src/model/paper_error.dart';
 
 class BooksApi {
   final Dio _dio;

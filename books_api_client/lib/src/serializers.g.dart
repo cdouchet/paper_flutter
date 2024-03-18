@@ -12,11 +12,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(BookCurrentReading.serializer)
       ..add(BookPicture.serializer)
       ..add(BookPictures.serializer)
+      ..add(BookStatus.serializer)
+      ..add(BookWithStats.serializer)
       ..add(Chapter.serializer)
       ..add(ChapterComment.serializer)
       ..add(ChapterContents.serializer)
+      ..add(ChapterLike.serializer)
       ..add(ChapterPictures.serializer)
       ..add(ChapterWarning.serializer)
+      ..add(ChapterWithStats.serializer)
       ..add(DateTimeSchema.serializer)
       ..add(DisplayChapterComment.serializer)
       ..add(DisplayUser.serializer)
@@ -31,6 +35,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PaperError.serializer)
       ..add(PaperObjectId.serializer)
       ..add(PublicationState.serializer)
+      ..add(PublicationStateUpdate.serializer)
       ..add(Reading.serializer)
       ..add(SmallUser.serializer)
       ..addBuilderFactory(
@@ -39,8 +44,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<BuiltList<BionicWord>>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Chapter)]),
-          () => new ListBuilder<Chapter>())
+          const FullType(BuiltList, const [const FullType(ChapterWithStats)]),
+          () => new ListBuilder<ChapterWithStats>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChapterWarning)]),
+          () => new ListBuilder<ChapterWarning>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

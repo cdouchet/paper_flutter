@@ -26,7 +26,6 @@ export 'package:accounts_api_client/src/model/full_user_with_token.dart';
 export 'package:accounts_api_client/src/model/fullname_update.dart';
 export 'package:accounts_api_client/src/model/google_oauth_payload.dart';
 export 'package:accounts_api_client/src/model/location.dart';
-export 'package:accounts_api_client/src/model/login_credentials.dart';
 export 'package:accounts_api_client/src/model/mobile_confirm_form.dart';
 export 'package:accounts_api_client/src/model/mobile_register_form.dart';
 export 'package:accounts_api_client/src/model/paper_error.dart';

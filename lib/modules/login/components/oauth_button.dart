@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:paper_flutter/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +31,7 @@ class OAuthButtonState extends State<OAuthButton> {
       onPressed: () {
 
         Provider.of<LoginProvider>(context, listen: false)
-            .handleOAuthLogin(widget.buttonType);
+            .handleOAuthLogin(widget.buttonType, context);
             // .then((res) {
         //       if (res.isSuccess) {
         //         print("Success: ${res.success}");

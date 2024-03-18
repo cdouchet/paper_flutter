@@ -18,6 +18,8 @@ class _$Book extends Book {
   @override
   final BookPictures pictures;
   @override
+  final BookStatus status;
+  @override
   final String title;
   @override
   final DateTimeSchema updatedAt;
@@ -31,6 +33,7 @@ class _$Book extends Book {
       required this.createdAt,
       required this.description,
       required this.pictures,
+      required this.status,
       required this.title,
       required this.updatedAt})
       : super._() {
@@ -39,6 +42,7 @@ class _$Book extends Book {
     BuiltValueNullFieldError.checkNotNull(createdAt, r'Book', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(description, r'Book', 'description');
     BuiltValueNullFieldError.checkNotNull(pictures, r'Book', 'pictures');
+    BuiltValueNullFieldError.checkNotNull(status, r'Book', 'status');
     BuiltValueNullFieldError.checkNotNull(title, r'Book', 'title');
     BuiltValueNullFieldError.checkNotNull(updatedAt, r'Book', 'updatedAt');
   }
@@ -59,6 +63,7 @@ class _$Book extends Book {
         createdAt == other.createdAt &&
         description == other.description &&
         pictures == other.pictures &&
+        status == other.status &&
         title == other.title &&
         updatedAt == other.updatedAt;
   }
@@ -71,6 +76,7 @@ class _$Book extends Book {
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, pictures.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, updatedAt.hashCode);
     _$hash = $jf(_$hash);
@@ -85,6 +91,7 @@ class _$Book extends Book {
           ..add('createdAt', createdAt)
           ..add('description', description)
           ..add('pictures', pictures)
+          ..add('status', status)
           ..add('title', title)
           ..add('updatedAt', updatedAt))
         .toString();
@@ -117,6 +124,10 @@ class BookBuilder implements Builder<Book, BookBuilder> {
       _$this._pictures ??= new BookPicturesBuilder();
   set pictures(BookPicturesBuilder? pictures) => _$this._pictures = pictures;
 
+  BookStatus? _status;
+  BookStatus? get status => _$this._status;
+  set status(BookStatus? status) => _$this._status = status;
+
   String? _title;
   String? get title => _$this._title;
   set title(String? title) => _$this._title = title;
@@ -139,6 +150,7 @@ class BookBuilder implements Builder<Book, BookBuilder> {
       _createdAt = $v.createdAt.toBuilder();
       _description = $v.description;
       _pictures = $v.pictures.toBuilder();
+      _status = $v.status;
       _title = $v.title;
       _updatedAt = $v.updatedAt.toBuilder();
       _$v = null;
@@ -172,6 +184,8 @@ class BookBuilder implements Builder<Book, BookBuilder> {
               description: BuiltValueNullFieldError.checkNotNull(
                   description, r'Book', 'description'),
               pictures: pictures.build(),
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, r'Book', 'status'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'Book', 'title'),
               updatedAt: updatedAt.build());

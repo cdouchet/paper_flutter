@@ -15,17 +15,35 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Response<BuiltList<Book>>>(
+    return FutureBuilder<Response<BuiltList<BookWithStats>>>(
         future: booksApiClient.getBooksApi().getPromotedBooks(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            print(snapshot.error);
-            return Container();
+            return const CircularProgressIndicator();
           }
-          print(snapshot.data);
           return HomeHeaderBook(
-            book: snapshot.data!.data!.first,
+            book: snapshot.data!.data!.elementAt(0),
           );
+
+          // return Flexible(
+          //   child: ListView.separated(shrinkWrap: true, itemCount: snapshot.data!.data!.length, separatorBuilder: (context, index) => const SizedBox(height: 20), itemBuilder: (context, index) {
+          //     final book = snapshot.data!.data!.elementAt(index);
+          //     return Image.network(book.pictures.cover!);
+          //     // return Column(
+          //     //   children: [
+          //     //     const SizedBox(height: 20),
+          //     //     Text(book.title),
+          //     //     const SizedBox(height: 20),
+          //     //     Flexible(
+          //     //       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          //     //         Image.network(book.pictures.cover!, fit: BoxFit.cover),
+          //     //         // Image.network(book.pictures.art!)
+          //     //       ],),
+          //     //     ),
+          //     //   ],
+          //     // );
+          //   }),
+          // );
         });
   }
 }

@@ -9,7 +9,6 @@ import 'package:dio/dio.dart';
 
 import 'package:accounts_api_client/src/api_util.dart';
 import 'package:accounts_api_client/src/model/full_user.dart';
-import 'package:accounts_api_client/src/model/paper_error.dart';
 
 class OAuthApi {
   final Dio _dio;

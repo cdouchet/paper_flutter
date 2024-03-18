@@ -145,7 +145,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login**
-> FullUser login(loginCredentials)
+> FullUser login()
 
 Authenticate using an username/email and a password
 
@@ -156,10 +156,9 @@ Authenticate using an username/email and a password
 import 'package:accounts_api_client/api.dart';
 
 final api = AccountsApiClient().getLoginApi();
-final LoginCredentials loginCredentials = ; // LoginCredentials | 
 
 try {
-    final response = api.login(loginCredentials);
+    final response = api.login();
     print(response);
 } catch on DioException (e) {
     print('Exception when calling LoginApi->login: $e\n');
@@ -167,10 +166,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **loginCredentials** | [**LoginCredentials**](LoginCredentials.md)|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -182,7 +178,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1,12 +1,14 @@
 .gitignore
 README.md
 analysis_options.yaml
+doc/AccountsApi.md
 doc/BooksApi.md
 doc/ChaptersApi.md
 doc/PaperError.md
 doc/PaperFileDisplay.md
 doc/StorageApi.md
 lib/src/api.dart
+lib/src/api/accounts_api.dart
 lib/src/api/books_api.dart
 lib/src/api/chapters_api.dart
 lib/src/api/storage_api.dart

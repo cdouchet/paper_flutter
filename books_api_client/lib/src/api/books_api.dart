@@ -9,10 +9,10 @@ import 'package:dio/dio.dart';
 
 import 'package:books_api_client/src/api_util.dart';
 import 'package:books_api_client/src/model/book.dart';
+import 'package:books_api_client/src/model/book_with_stats.dart';
 import 'package:books_api_client/src/model/full_book.dart';
 import 'package:books_api_client/src/model/new_book.dart';
 import 'package:books_api_client/src/model/object_id.dart';
-import 'package:books_api_client/src/model/paper_error.dart';
 import 'package:built_collection/built_collection.dart';
 
 class BooksApi {
@@ -22,8 +22,8 @@ class BooksApi {
 
   const BooksApi(this._dio, this._serializers);
 
-  /// Get Books
-  /// Get Books
+  /// Get Books. Requires admin role
+  /// Get Books. Requires admin role
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -249,6 +249,80 @@ class BooksApi {
     );
   }
 
+  /// getMyFullBooks
+  ///
+  ///
+  /// Parameters:
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [BuiltList<FullBook>] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<BuiltList<FullBook>>> getMyFullBooks({
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/books/me/full';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<FullBook>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(FullBook)]),
+            ) as BuiltList<FullBook>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<FullBook>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Get promoted books
   /// Get promoted books
   ///
@@ -260,9 +334,9 @@ class BooksApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<Book>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<BookWithStats>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Book>>> getPromotedBooks({
+  Future<Response<BuiltList<BookWithStats>>> getPromotedBooks({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -291,7 +365,7 @@ class BooksApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Book>? _responseData;
+    BuiltList<BookWithStats>? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -299,8 +373,9 @@ class BooksApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(BuiltList, [FullType(Book)]),
-            ) as BuiltList<Book>;
+              specifiedType:
+                  const FullType(BuiltList, [FullType(BookWithStats)]),
+            ) as BuiltList<BookWithStats>;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -311,7 +386,7 @@ class BooksApi {
       );
     }
 
-    return Response<BuiltList<Book>>(
+    return Response<BuiltList<BookWithStats>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -334,9 +409,9 @@ class BooksApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<Book>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<BookWithStats>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Book>>> getRecommendedBooks({
+  Future<Response<BuiltList<BookWithStats>>> getRecommendedBooks({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -365,7 +440,7 @@ class BooksApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Book>? _responseData;
+    BuiltList<BookWithStats>? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -373,8 +448,9 @@ class BooksApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(BuiltList, [FullType(Book)]),
-            ) as BuiltList<Book>;
+              specifiedType:
+                  const FullType(BuiltList, [FullType(BookWithStats)]),
+            ) as BuiltList<BookWithStats>;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -385,7 +461,7 @@ class BooksApi {
       );
     }
 
-    return Response<BuiltList<Book>>(
+    return Response<BuiltList<BookWithStats>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -408,9 +484,9 @@ class BooksApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<Book>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<BookWithStats>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Book>>> getTrendingBooks({
+  Future<Response<BuiltList<BookWithStats>>> getTrendingBooks({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -439,7 +515,7 @@ class BooksApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<Book>? _responseData;
+    BuiltList<BookWithStats>? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -447,8 +523,9 @@ class BooksApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(BuiltList, [FullType(Book)]),
-            ) as BuiltList<Book>;
+              specifiedType:
+                  const FullType(BuiltList, [FullType(BookWithStats)]),
+            ) as BuiltList<BookWithStats>;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -459,7 +536,7 @@ class BooksApi {
       );
     }
 
-    return Response<BuiltList<Book>>(
+    return Response<BuiltList<BookWithStats>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

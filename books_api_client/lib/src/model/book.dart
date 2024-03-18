@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:books_api_client/src/model/date_time_schema.dart';
+import 'package:books_api_client/src/model/book_status.dart';
 import 'package:books_api_client/src/model/object_id.dart';
 import 'package:books_api_client/src/model/book_pictures.dart';
 import 'package:built_value/built_value.dart';
@@ -19,6 +20,7 @@ part 'book.g.dart';
 /// * [createdAt]
 /// * [description]
 /// * [pictures]
+/// * [status]
 /// * [title]
 /// * [updatedAt]
 @BuiltValue()
@@ -37,6 +39,10 @@ abstract class Book implements Built<Book, BookBuilder> {
 
   @BuiltValueField(wireName: r'pictures')
   BookPictures get pictures;
+
+  @BuiltValueField(wireName: r'status')
+  BookStatus get status;
+  // enum statusEnum {  Public,  Private,  Warning,  };
 
   @BuiltValueField(wireName: r'title')
   String get title;
@@ -91,6 +97,11 @@ class _$BookSerializer implements PrimitiveSerializer<Book> {
     yield serializers.serialize(
       object.pictures,
       specifiedType: const FullType(BookPictures),
+    );
+    yield r'status';
+    yield serializers.serialize(
+      object.status,
+      specifiedType: const FullType(BookStatus),
     );
     yield r'title';
     yield serializers.serialize(
@@ -161,6 +172,13 @@ class _$BookSerializer implements PrimitiveSerializer<Book> {
             specifiedType: const FullType(BookPictures),
           ) as BookPictures;
           result.pictures.replace(valueDes);
+          break;
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BookStatus),
+          ) as BookStatus;
+          result.status = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(

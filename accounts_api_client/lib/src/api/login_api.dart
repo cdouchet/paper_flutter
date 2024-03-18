@@ -10,10 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:accounts_api_client/src/model/email_confirm_form.dart';
 import 'package:accounts_api_client/src/model/email_login_form.dart';
 import 'package:accounts_api_client/src/model/full_user.dart';
-import 'package:accounts_api_client/src/model/login_credentials.dart';
 import 'package:accounts_api_client/src/model/mobile_confirm_form.dart';
 import 'package:accounts_api_client/src/model/mobile_register_form.dart';
-import 'package:accounts_api_client/src/model/paper_error.dart';
 
 class LoginApi {
   final Dio _dio;
@@ -284,7 +282,6 @@ class LoginApi {
   /// Authenticate using an username/email and a password
   ///
   /// Parameters:
-  /// * [loginCredentials]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -294,8 +291,8 @@ class LoginApi {
   ///
   /// Returns a [Future] containing a [Response] with a [FullUser] as data
   /// Throws [DioException] if API call or serialization fails
+  @Deprecated('This operation has been deprecated')
   Future<Response<FullUser>> login({
-    required LoginCredentials loginCredentials,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -313,31 +310,11 @@ class LoginApi {
         'secure': <Map<String, String>>[],
         ...?extra,
       },
-      contentType: 'application/json',
       validateStatus: validateStatus,
     );
 
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(LoginCredentials);
-      _bodyData =
-          _serializers.serialize(loginCredentials, specifiedType: _type);
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
     final _response = await _dio.request<Object>(
       _path,
-      data: _bodyData,
       options: _options,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,

@@ -12,7 +12,6 @@ import 'package:books_api_client/src/model/chapter_comment.dart';
 import 'package:books_api_client/src/model/display_chapter_comment.dart';
 import 'package:books_api_client/src/model/new_chapter_comment.dart';
 import 'package:books_api_client/src/model/object_id.dart';
-import 'package:books_api_client/src/model/paper_error.dart';
 import 'package:built_collection/built_collection.dart';
 
 class CommentsApi {

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **createdAt** | [**DateTimeSchema**](DateTimeSchema.md) |  | 
 **description** | **String** |  | 
 **pictures** | [**BookPictures**](BookPictures.md) |  | 
+**status** | [**BookStatus**](BookStatus.md) |  | 
 **title** | **String** |  | 
 **updatedAt** | [**DateTimeSchema**](DateTimeSchema.md) |  | 
 

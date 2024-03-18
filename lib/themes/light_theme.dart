@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 const defaultTextStyle = TextStyle(
-  color: Colors.white,
+  color: Colors.black,
   // fontWeight: FontWeight.bold,
 );
 
@@ -19,7 +18,7 @@ final _textTheme = const TextTheme(
 ).apply();
 
 final lightTheme = ThemeData(
-  fontFamily: GoogleFonts.inter().fontFamily,
+  fontFamily: 'Inter',
   primaryColor: const Color.fromRGBO(0, 209, 199, 1),
   primaryTextTheme: _textTheme,
   textTheme: _textTheme,
@@ -27,3 +26,5 @@ final lightTheme = ThemeData(
   splashColor: Colors.transparent,
   splashFactory: NoSplash.splashFactory,
 );
+
+const Color homeSectionBackgroundColor = Color.fromRGBO(238, 238, 238, 1);

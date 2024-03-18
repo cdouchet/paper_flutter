@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **getTrendingUsers**
-> BuiltList<User> getTrendingUsers()
+> BuiltList<DisplayUser> getTrendingUsers()
 
 Returns trending writers
 
@@ -40,7 +40,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;User&gt;**](User.md)
+[**BuiltList&lt;DisplayUser&gt;**](DisplayUser.md)
 
 ### Authorization
 

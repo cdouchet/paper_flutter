@@ -46,15 +46,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:storage_api_client/storage_api_client.dart';
 
 
-final api = StorageApiClient().getBooksApi();
-final String bookId = bookId_example; // String | 
+final api = StorageApiClient().getAccountsApi();
 final MultipartFile file = BINARY_DATA_HERE; // MultipartFile | 
 
 try {
-    final response = await api.updateBookArt(bookId, file);
+    final response = await api.updateUserPicture(file);
     print(response);
 } catch on DioException (e) {
-    print("Exception when calling BooksApi->updateBookArt: $e\n");
+    print("Exception when calling AccountsApi->updateUserPicture: $e\n");
 }
 
 ```
@@ -65,6 +64,7 @@ All URIs are relative to *https://paper-back.doggo-saloon.net/storage*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+[*AccountsApi*](doc/AccountsApi.md) | [**updateUserPicture**](doc/AccountsApi.md#updateuserpicture) | **PUT** /users/picture | Update user&#39;s picture
 [*BooksApi*](doc/BooksApi.md) | [**updateBookArt**](doc/BooksApi.md#updatebookart) | **PUT** /books/{book_id}/art | Update a book&#39;s art, returning its uri
 [*BooksApi*](doc/BooksApi.md) | [**updateBookCover**](doc/BooksApi.md#updatebookcover) | **PUT** /books/{book_id}/cover | Update a book&#39;s cover, returning its uri
 [*ChaptersApi*](doc/ChaptersApi.md) | [**updateChapterCover**](doc/ChaptersApi.md#updatechaptercover) | **PUT** /chapters/{chapter_id}/cover | Update a chapter&#39;s cover, returning its uri

@@ -63,9 +63,10 @@ All URIs are relative to *https://paper-back.doggo-saloon.net/books*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[*BooksApi*](doc/BooksApi.md) | [**getBooks**](doc/BooksApi.md#getbooks) | **GET** /books | Get Books
+[*BooksApi*](doc/BooksApi.md) | [**getBooks**](doc/BooksApi.md#getbooks) | **GET** /books | Get Books. Requires admin role
 [*BooksApi*](doc/BooksApi.md) | [**getFullBook**](doc/BooksApi.md#getfullbook) | **GET** /books/full/{book_id} | Get Full Book with chapters, pictures and reading count
 [*BooksApi*](doc/BooksApi.md) | [**getMyBooks**](doc/BooksApi.md#getmybooks) | **GET** /books/me | Get authenticated user&#39;s book
+[*BooksApi*](doc/BooksApi.md) | [**getMyFullBooks**](doc/BooksApi.md#getmyfullbooks) | **GET** /books/me/full | 
 [*BooksApi*](doc/BooksApi.md) | [**getPromotedBooks**](doc/BooksApi.md#getpromotedbooks) | **GET** /books/promoted | Get promoted books
 [*BooksApi*](doc/BooksApi.md) | [**getRecommendedBooks**](doc/BooksApi.md#getrecommendedbooks) | **GET** /books/recommended | Get recommended books
 [*BooksApi*](doc/BooksApi.md) | [**getTrendingBooks**](doc/BooksApi.md#gettrendingbooks) | **GET** /books/trending | Get trending books
@@ -79,8 +80,11 @@ Class | Method | HTTP request | Description
 [*CommentsApi*](doc/CommentsApi.md) | [**getChapterCommentsWithLimit**](doc/CommentsApi.md#getchaptercommentswithlimit) | **GET** /books/chapters/{chapter_id}/comments | Get comments of a chapter&#39;s with limit &amp; skip parameters
 [*CommentsApi*](doc/CommentsApi.md) | [**postChapterComment**](doc/CommentsApi.md#postchaptercomment) | **POST** /books/chapters/{chapter_id}/comments | Post a new chapter&#39;s comment
 [*CommentsApi*](doc/CommentsApi.md) | [**updateComment**](doc/CommentsApi.md#updatecomment) | **PUT** /books/chapters/comments/{comment_id} | Update a chapter&#39;s comment
+[*LikesApi*](doc/LikesApi.md) | [**getUserLikedBooks**](doc/LikesApi.md#getuserlikedbooks) | **GET** /books/liked | Get authenticated user liked books
 [*LikesApi*](doc/LikesApi.md) | [**likeBook**](doc/LikesApi.md#likebook) | **PUT** /books/{book_id}/like | Like a book
+[*LikesApi*](doc/LikesApi.md) | [**likeChapter**](doc/LikesApi.md#likechapter) | **PUT** /chapters/{chapter_id}/like | Like a chapter
 [*LikesApi*](doc/LikesApi.md) | [**unlikeBook**](doc/LikesApi.md#unlikebook) | **PUT** /books/{book_id}/unlike | Unlike a book
+[*LikesApi*](doc/LikesApi.md) | [**unlikeChapter**](doc/LikesApi.md#unlikechapter) | **PUT** /chapters/{chapter_id}/unlike | Unlike a chapter
 [*ReadingsApi*](doc/ReadingsApi.md) | [**getChapterReadingsCount**](doc/ReadingsApi.md#getchapterreadingscount) | **GET** /books/chapters/{chapter_id}/reading | Get a chapter&#39;s reading count
 [*ReadingsApi*](doc/ReadingsApi.md) | [**getMyReadings**](doc/ReadingsApi.md#getmyreadings) | **GET** /books/chapters/readings/me | Get authenticated user&#39;s readings
 [*ReadingsApi*](doc/ReadingsApi.md) | [**insertChapterReading**](doc/ReadingsApi.md#insertchapterreading) | **POST** /books/chapters/reading | Mark a chapter as read with optional bookmark
@@ -93,11 +97,15 @@ Class | Method | HTTP request | Description
  - [BookCurrentReading](doc/BookCurrentReading.md)
  - [BookPicture](doc/BookPicture.md)
  - [BookPictures](doc/BookPictures.md)
+ - [BookStatus](doc/BookStatus.md)
+ - [BookWithStats](doc/BookWithStats.md)
  - [Chapter](doc/Chapter.md)
  - [ChapterComment](doc/ChapterComment.md)
  - [ChapterContents](doc/ChapterContents.md)
+ - [ChapterLike](doc/ChapterLike.md)
  - [ChapterPictures](doc/ChapterPictures.md)
  - [ChapterWarning](doc/ChapterWarning.md)
+ - [ChapterWithStats](doc/ChapterWithStats.md)
  - [DateTimeSchema](doc/DateTimeSchema.md)
  - [DisplayChapterComment](doc/DisplayChapterComment.md)
  - [DisplayUser](doc/DisplayUser.md)
@@ -112,6 +120,7 @@ Class | Method | HTTP request | Description
  - [PaperError](doc/PaperError.md)
  - [PaperObjectId](doc/PaperObjectId.md)
  - [PublicationState](doc/PublicationState.md)
+ - [PublicationStateUpdate](doc/PublicationStateUpdate.md)
  - [Reading](doc/Reading.md)
  - [SmallUser](doc/SmallUser.md)
 

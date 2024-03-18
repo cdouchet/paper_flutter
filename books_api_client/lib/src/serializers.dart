@@ -19,11 +19,15 @@ import 'package:books_api_client/src/model/book.dart';
 import 'package:books_api_client/src/model/book_current_reading.dart';
 import 'package:books_api_client/src/model/book_picture.dart';
 import 'package:books_api_client/src/model/book_pictures.dart';
+import 'package:books_api_client/src/model/book_status.dart';
+import 'package:books_api_client/src/model/book_with_stats.dart';
 import 'package:books_api_client/src/model/chapter.dart';
 import 'package:books_api_client/src/model/chapter_comment.dart';
 import 'package:books_api_client/src/model/chapter_contents.dart';
+import 'package:books_api_client/src/model/chapter_like.dart';
 import 'package:books_api_client/src/model/chapter_pictures.dart';
 import 'package:books_api_client/src/model/chapter_warning.dart';
+import 'package:books_api_client/src/model/chapter_with_stats.dart';
 import 'package:books_api_client/src/model/date_time_schema.dart';
 import 'package:books_api_client/src/model/display_chapter_comment.dart';
 import 'package:books_api_client/src/model/display_user.dart';
@@ -38,6 +42,7 @@ import 'package:books_api_client/src/model/object_id.dart';
 import 'package:books_api_client/src/model/paper_error.dart';
 import 'package:books_api_client/src/model/paper_object_id.dart';
 import 'package:books_api_client/src/model/publication_state.dart';
+import 'package:books_api_client/src/model/publication_state_update.dart';
 import 'package:books_api_client/src/model/reading.dart';
 import 'package:books_api_client/src/model/small_user.dart';
 
@@ -49,11 +54,15 @@ part 'serializers.g.dart';
   BookCurrentReading,
   BookPicture,
   BookPictures,
+  BookStatus,
+  BookWithStats,
   Chapter,
   ChapterComment,
   ChapterContents,
+  ChapterLike,
   ChapterPictures,
   ChapterWarning,
+  ChapterWithStats,
   DateTimeSchema,
   DisplayChapterComment,
   DisplayUser,
@@ -68,6 +77,7 @@ part 'serializers.g.dart';
   PaperError,
   PaperObjectId,
   PublicationState,
+  PublicationStateUpdate,
   Reading,
   SmallUser,
 ])
@@ -77,12 +87,20 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<DisplayChapterComment>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FullBook)]),
+        () => ListBuilder<FullBook>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(BookCurrentReading)]),
         () => ListBuilder<BookCurrentReading>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Book)]),
         () => ListBuilder<Book>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BookWithStats)]),
+        () => ListBuilder<BookWithStats>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

@@ -24,12 +24,14 @@ class _StartViewState extends State<StartView> {
   }
 
   void checkAuth() {
+    // cookieManager.cookieJar.deleteAll();
     accountsApiClient.getUsersApi().me().then((res) {
       Provider.of<UserProvider>(context, listen: false).setFullUser(res.data!);
       // Navigator.pushReplacementNamed(context, HomeView.routeName);
       Navigator.pushReplacementNamed(context, HomeView.routeName);
     }).catchError((err, st) {
       Navigator.pushReplacementNamed(context, LoginView.routeName);
+      print("Unauthenticated");
       print(err);
       print(st);
     });

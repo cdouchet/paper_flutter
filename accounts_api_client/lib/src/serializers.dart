@@ -25,7 +25,6 @@ import 'package:accounts_api_client/src/model/full_user_with_token.dart';
 import 'package:accounts_api_client/src/model/fullname_update.dart';
 import 'package:accounts_api_client/src/model/google_oauth_payload.dart';
 import 'package:accounts_api_client/src/model/location.dart';
-import 'package:accounts_api_client/src/model/login_credentials.dart';
 import 'package:accounts_api_client/src/model/mobile_confirm_form.dart';
 import 'package:accounts_api_client/src/model/mobile_register_form.dart';
 import 'package:accounts_api_client/src/model/paper_error.dart';
@@ -51,7 +50,6 @@ part 'serializers.g.dart';
   FullnameUpdate,
   GoogleOauthPayload,
   Location,
-  LoginCredentials,
   MobileConfirmForm,
   MobileRegisterForm,
   PaperError,
@@ -65,8 +63,8 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(User)]),
-        () => ListBuilder<User>(),
+        const FullType(BuiltList, [FullType(DisplayUser)]),
+        () => ListBuilder<DisplayUser>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

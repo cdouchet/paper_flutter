@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:accounts_api_client/accounts_api_client.dart';
 import 'package:app_links/app_links.dart';
-import 'package:built_value/serializer.dart';
 import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +12,6 @@ import 'package:paper_flutter/modules/login/components/oauth_button.dart';
 import 'package:paper_flutter/openapi/clients.dart';
 import 'package:paper_flutter/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:result_type/result_type.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,10 +25,10 @@ final cookieManager = CookieManager(
 );
 
 class LoginProvider extends ChangeNotifier {
-  void handleOAuthLogin(OAuthButtonType oAuthType) async {
+  void handleOAuthLogin(OAuthButtonType oAuthType, BuildContext context) async {
     switch (oAuthType) {
       case OAuthButtonType.apple:
-        await signInWithApple();
+        await signInWithApple(context);
         break;
       case OAuthButtonType.google:
         await signInWithGoogle();
@@ -96,14 +91,13 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  Future<Result<FullUser, PaperError>> signInWithApple() async {
-    try {
-      final credentials = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
+  Future<void> signInWithApple(BuildContext context) async {
+    SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    ).then((credentials) {
       final encodedUser = jsonEncode(
         {
           "name": {
@@ -113,26 +107,23 @@ class LoginProvider extends ChangeNotifier {
           "email": credentials.email,
         },
       );
-      print("User: $encodedUser");
-      print("User Identifier: ${credentials.userIdentifier}");
-      print("User names: ${credentials.familyName} ${credentials.givenName}");
-      final loginResponse = await accountsApiClient.getOAuthApi().appleRegister(
-          code: credentials.authorizationCode,
-          idToken: credentials.identityToken!,
-          state: credentials.state ?? "state",
-          user: credentials.givenName == null ? null : encodedUser);
-      final fullUser = loginResponse.data!;
-      print("FullUser: ${fullUser.toString()}");
-      print("Headers: ${loginResponse.headers}");
-      return Success(fullUser);
-    } on DioException catch (e, s) {
-      print("SignInWithApple Exception: ");
-      print(e);
-      print(s);
-      PaperErrorBuilder builder = PaperErrorBuilder();
-      final error = (serializers.deserialize(e.response!.data,
-          specifiedType: const FullType(PaperError)) as PaperError);
-      return Failure(error);
-    }
+      accountsApiClient
+          .getOAuthApi()
+          .appleRegister(
+            code: credentials.authorizationCode,
+            idToken: credentials.identityToken!,
+            state: credentials.state ?? "state",
+            user: credentials.givenName == null ? null : encodedUser,
+          )
+          .then((loginResponse) {
+        final fullUser = loginResponse.data!;
+        Provider.of<UserProvider>(context, listen: false).setFullUser(fullUser);
+        Navigator.pushReplacementNamed(context, HomeView.routeName);
+      }).catchError((err, st) {
+        print("Error registering with apple to paper back");
+      });
+    }).catchError((err, st) {
+      print("Error getting apple id credentials");
+    });
   }
 }

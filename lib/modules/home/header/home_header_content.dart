@@ -1,16 +1,16 @@
+import 'package:books_api_client/books_api_client.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:paper_flutter/helpers/widgets/open_book_modal_wrapper.dart';
 import 'package:paper_flutter/themes/light_theme.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeHeaderContent extends StatelessWidget {
-  final String coverUrl;
-  final String title;
-  final String description;
+  final BookWithStats book;
   const HomeHeaderContent({
     super.key,
-    required this.coverUrl,
-    required this.title,
-    required this.description,
+    required this.book,
   });
 
   @override
@@ -26,12 +26,25 @@ class HomeHeaderContent extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                coverUrl,
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height * 0.3,
+            child: OpenBookModalWrapper(
+              book: book,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: CachedNetworkImage(
+                  imageUrl: book.pictures.cover!,
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  progressIndicatorBuilder: (context, _, loadingProgress) =>
+                      Shimmer.fromColors(
+                    baseColor: Colors.grey,
+                    highlightColor: Colors.white,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      constraints: const BoxConstraints.expand(),
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -44,19 +57,27 @@ class HomeHeaderContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    title,
+                    book.title,
                     style: defaultTextStyle.copyWith(
                         fontSize: 36,
                         color: Colors.black,
+                        height: 1.1,
                         fontFamily: GoogleFonts.spinnaker().fontFamily),
                     textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    description,
-                    style: defaultTextStyle.copyWith(color: Colors.black),
-                    textAlign: TextAlign.left,
                     maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Expanded(
+                    child: Text(
+                      book.description,
+                      style: defaultTextStyle.copyWith(
+                        color: Colors.black,
+                        letterSpacing: -0.3,
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.left,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   const SizedBox(
                     height: 14,

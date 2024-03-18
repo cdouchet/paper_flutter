@@ -9,9 +9,13 @@ import 'package:books_api_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | [**ObjectId**](ObjectId.md) |  | 
+**chapterCount** | **int** |  | 
+**commentsCount** | **int** |  | 
 **createdAt** | [**DateTimeSchema**](DateTimeSchema.md) |  | 
+**likesCount** | **int** |  | 
 **title** | **String** |  | 
 **updatedAt** | [**DateTimeSchema**](DateTimeSchema.md) |  | 
+**viewsCount** | **int** |  | 
 **bookmark** | **int** |  | [optional] 
 **cover** | **String** |  | [optional] 
 

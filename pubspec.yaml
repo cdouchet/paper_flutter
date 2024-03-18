@@ -60,6 +60,9 @@ dependencies:
   built_collection: ^5.1.1
   fadingpageview: ^1.0.0
   marquee: ^2.2.3
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
   
 dev_dependencies:
   flutter_test:
@@ -83,6 +86,20 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter-Black.ttf
+        - asset: assets/fonts/Inter/static/Inter-Bold.ttf
+        - asset: assets/fonts/Inter/static/Inter-ExtraBold.ttf
+        - asset: assets/fonts/Inter/static/Inter-ExtraLight.ttf
+        - asset: assets/fonts/Inter/static/Inter-Light.ttf
+        - asset: assets/fonts/Inter/static/Inter-Medium.ttf
+        - asset: assets/fonts/Inter/static/Inter-Regular.ttf
+        - asset: assets/fonts/Inter/static/Inter-SemiBold.ttf
+        - asset: assets/fonts/Inter/static/Inter-Thin.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

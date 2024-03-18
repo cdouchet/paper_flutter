@@ -10,7 +10,8 @@ All URIs are relative to *https://paper-back.doggo-saloon.net/accounts*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**follow**](InteractionsApi.md#follow) | **PATCH** /{user_id}/follow | 
-[**getFollowersCount**](InteractionsApi.md#getfollowerscount) | **GET** /{user_id}/followers | 
+[**getFollowersCount**](InteractionsApi.md#getfollowerscount) | **GET** /{user_id}/followers/count | 
+[**getUserFollowers**](InteractionsApi.md#getuserfollowers) | **GET** /{user_id}/followers | Get user followers
 [**unfollow**](InteractionsApi.md#unfollow) | **PATCH** /{user_id}/unfollow | 
 
 
@@ -84,6 +85,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserFollowersCountResponse**](UserFollowersCountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserFollowers**
+> BuiltList<DisplayUser> getUserFollowers(userId)
+
+Get user followers
+
+Get user followers
+
+### Example
+```dart
+import 'package:accounts_api_client/api.dart';
+
+final api = AccountsApiClient().getInteractionsApi();
+final String userId = userId_example; // String | 
+
+try {
+    final response = api.getUserFollowers(userId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling InteractionsApi->getUserFollowers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**BuiltList&lt;DisplayUser&gt;**](DisplayUser.md)
 
 ### Authorization
 

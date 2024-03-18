@@ -9,6 +9,7 @@ import 'package:storage_api_client/src/auth/api_key_auth.dart';
 import 'package:storage_api_client/src/auth/basic_auth.dart';
 import 'package:storage_api_client/src/auth/bearer_auth.dart';
 import 'package:storage_api_client/src/auth/oauth.dart';
+import 'package:storage_api_client/src/api/accounts_api.dart';
 import 'package:storage_api_client/src/api/books_api.dart';
 import 'package:storage_api_client/src/api/chapters_api.dart';
 import 'package:storage_api_client/src/api/storage_api.dart';
@@ -76,6 +77,12 @@ class StorageApiClient {
               as ApiKeyAuthInterceptor)
           .apiKeys[name] = apiKey;
     }
+  }
+
+  /// Get AccountsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AccountsApi getAccountsApi() {
+    return AccountsApi(dio, serializers);
   }
 
   /// Get BooksApi instance, base route and serializer can be overridden by a given but be careful,

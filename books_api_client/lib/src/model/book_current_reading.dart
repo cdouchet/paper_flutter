@@ -14,9 +14,13 @@ part 'book_current_reading.g.dart';
 ///
 /// Properties:
 /// * [id]
+/// * [chapterCount]
+/// * [commentsCount]
 /// * [createdAt]
+/// * [likesCount]
 /// * [title]
 /// * [updatedAt]
+/// * [viewsCount]
 /// * [bookmark]
 /// * [cover]
 @BuiltValue()
@@ -25,14 +29,26 @@ abstract class BookCurrentReading
   @BuiltValueField(wireName: r'_id')
   ObjectId get id;
 
+  @BuiltValueField(wireName: r'chapter_count')
+  int get chapterCount;
+
+  @BuiltValueField(wireName: r'comments_count')
+  int get commentsCount;
+
   @BuiltValueField(wireName: r'created_at')
   DateTimeSchema get createdAt;
+
+  @BuiltValueField(wireName: r'likes_count')
+  int get likesCount;
 
   @BuiltValueField(wireName: r'title')
   String get title;
 
   @BuiltValueField(wireName: r'updated_at')
   DateTimeSchema get updatedAt;
+
+  @BuiltValueField(wireName: r'views_count')
+  int get viewsCount;
 
   @BuiltValueField(wireName: r'bookmark')
   int? get bookmark;
@@ -71,10 +87,25 @@ class _$BookCurrentReadingSerializer
       object.id,
       specifiedType: const FullType(ObjectId),
     );
+    yield r'chapter_count';
+    yield serializers.serialize(
+      object.chapterCount,
+      specifiedType: const FullType(int),
+    );
+    yield r'comments_count';
+    yield serializers.serialize(
+      object.commentsCount,
+      specifiedType: const FullType(int),
+    );
     yield r'created_at';
     yield serializers.serialize(
       object.createdAt,
       specifiedType: const FullType(DateTimeSchema),
+    );
+    yield r'likes_count';
+    yield serializers.serialize(
+      object.likesCount,
+      specifiedType: const FullType(int),
     );
     yield r'title';
     yield serializers.serialize(
@@ -85,6 +116,11 @@ class _$BookCurrentReadingSerializer
     yield serializers.serialize(
       object.updatedAt,
       specifiedType: const FullType(DateTimeSchema),
+    );
+    yield r'views_count';
+    yield serializers.serialize(
+      object.viewsCount,
+      specifiedType: const FullType(int),
     );
     if (object.bookmark != null) {
       yield r'bookmark';
@@ -132,12 +168,33 @@ class _$BookCurrentReadingSerializer
           ) as ObjectId;
           result.id.replace(valueDes);
           break;
+        case r'chapter_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.chapterCount = valueDes;
+          break;
+        case r'comments_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.commentsCount = valueDes;
+          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(DateTimeSchema),
           ) as DateTimeSchema;
           result.createdAt.replace(valueDes);
+          break;
+        case r'likes_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.likesCount = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(
@@ -152,6 +209,13 @@ class _$BookCurrentReadingSerializer
             specifiedType: const FullType(DateTimeSchema),
           ) as DateTimeSchema;
           result.updatedAt.replace(valueDes);
+          break;
+        case r'views_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.viewsCount = valueDes;
           break;
         case r'bookmark':
           final valueDes = serializers.deserialize(

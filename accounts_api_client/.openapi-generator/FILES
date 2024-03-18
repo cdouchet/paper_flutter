@@ -14,7 +14,6 @@ doc/GoogleOauthPayload.md
 doc/InteractionsApi.md
 doc/Location.md
 doc/LoginApi.md
-doc/LoginCredentials.md
 doc/MobileConfirmForm.md
 doc/MobileRegisterForm.md
 doc/OAuthApi.md
@@ -54,7 +53,6 @@ lib/src/model/full_user_with_token.dart
 lib/src/model/fullname_update.dart
 lib/src/model/google_oauth_payload.dart
 lib/src/model/location.dart
-lib/src/model/login_credentials.dart
 lib/src/model/mobile_confirm_form.dart
 lib/src/model/mobile_register_form.dart
 lib/src/model/paper_error.dart

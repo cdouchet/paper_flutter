@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:paper_flutter/modules/start/start_view.dart';
 import 'package:paper_flutter/providers/home_provider.dart';
 import 'package:paper_flutter/providers/login_provider.dart';
@@ -15,6 +16,10 @@ late Directory applicationDocumentsDirectory;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   applicationDocumentsDirectory = await getApplicationDocumentsDirectory();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const Paper());
 }
 

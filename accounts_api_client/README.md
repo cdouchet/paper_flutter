@@ -65,7 +65,8 @@ All URIs are relative to *https://paper-back.doggo-saloon.net/accounts*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 [*InteractionsApi*](doc/InteractionsApi.md) | [**follow**](doc/InteractionsApi.md#follow) | **PATCH** /{user_id}/follow | 
-[*InteractionsApi*](doc/InteractionsApi.md) | [**getFollowersCount**](doc/InteractionsApi.md#getfollowerscount) | **GET** /{user_id}/followers | 
+[*InteractionsApi*](doc/InteractionsApi.md) | [**getFollowersCount**](doc/InteractionsApi.md#getfollowerscount) | **GET** /{user_id}/followers/count | 
+[*InteractionsApi*](doc/InteractionsApi.md) | [**getUserFollowers**](doc/InteractionsApi.md#getuserfollowers) | **GET** /{user_id}/followers | Get user followers
 [*InteractionsApi*](doc/InteractionsApi.md) | [**unfollow**](doc/InteractionsApi.md#unfollow) | **PATCH** /{user_id}/unfollow | 
 [*LoginApi*](doc/LoginApi.md) | [**confirmEmail**](doc/LoginApi.md#confirmemail) | **POST** /login/email/confirm | Validates a validation code sent via email
 [*LoginApi*](doc/LoginApi.md) | [**confirmSms**](doc/LoginApi.md#confirmsms) | **POST** /login/sms/confirm | Validates a validation code sent via sms
@@ -78,7 +79,6 @@ Class | Method | HTTP request | Description
 [*UpdatesApi*](doc/UpdatesApi.md) | [**updateCodeTitle**](doc/UpdatesApi.md#updatecodetitle) | **PATCH** /users/code_title | 
 [*UpdatesApi*](doc/UpdatesApi.md) | [**updateDescription**](doc/UpdatesApi.md#updatedescription) | **PATCH** /users/description | 
 [*UpdatesApi*](doc/UpdatesApi.md) | [**updateFullname**](doc/UpdatesApi.md#updatefullname) | **PATCH** /users/fullname | 
-[*UpdatesApi*](doc/UpdatesApi.md) | [**updatePictureUri**](doc/UpdatesApi.md#updatepictureuri) | **PATCH** /users/user_picture_uri | 
 [*UpdatesApi*](doc/UpdatesApi.md) | [**updateUsername**](doc/UpdatesApi.md#updateusername) | **PATCH** /users/username | 
 [*UsersApi*](doc/UsersApi.md) | [**getTrendingUsers**](doc/UsersApi.md#gettrendingusers) | **GET** /users/categories/trending | Returns trending writers
 [*UsersApi*](doc/UsersApi.md) | [**getUserById**](doc/UsersApi.md#getuserbyid) | **GET** /users/{id} | Returns a specific user by id
@@ -98,7 +98,6 @@ Class | Method | HTTP request | Description
  - [FullnameUpdate](doc/FullnameUpdate.md)
  - [GoogleOauthPayload](doc/GoogleOauthPayload.md)
  - [Location](doc/Location.md)
- - [LoginCredentials](doc/LoginCredentials.md)
  - [MobileConfirmForm](doc/MobileConfirmForm.md)
  - [MobileRegisterForm](doc/MobileRegisterForm.md)
  - [PaperError](doc/PaperError.md)
